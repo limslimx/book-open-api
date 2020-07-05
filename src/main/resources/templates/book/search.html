@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments.html :: head"></head>
+
+<body class="bg-light">
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>책 검색하기</h2>
+    </div>
+    <div class="row mt-3 justify-content-center">
+        <form class="col-sm-3" th:action="@{/book/search/save}" th:object="${bookSearchForm}" method="post" novalidate>
+            <div class="form-group">
+                <label for="searchBy">검색어</label>
+                <input type="text" id="searchBy" th:field="*{searchBy}" class="form-control" aria-describedby="searchByHelp" required>
+                <small id="searchByHelp" class="form-text text-muted">
+                    찾고싶은 책을 입력하세요.
+                </small>
+                <small class="invalid-feedback">비밀번호를 입력하세요.</small>
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('searchBy')}" th:errors="*{searchBy}">searchBy error</small>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">검색</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</body>
+</html>
